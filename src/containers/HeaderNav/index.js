@@ -1,20 +1,47 @@
 import React, { Component } from 'react';
-import { Image, Menu, Form, Input, Icon } from 'semantic-ui-react';
 import './HeaderNav.scss';
+import { Image, Menu, Form, Input, Icon } from 'semantic-ui-react';
+import { Link, withRouter } from 'react-router-dom';
 import logo from '../../assets/images/logo.jpg';
 
 export class HeaderNav extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      query: ''
+    };
+  }
+
+  onInputChange = (event) => {
+    this.setState({
+      query: event.target.value
+    });
+  }
+
+  onSubmit = () => {
+    const escapedSearchQuery = encodeURI(this.state.query);
+    this.props.history.push(`/results?search_query=${escapedSearchQuery}`);
+  }
+
   render () {
     return (
       <Menu borderless className="top-menu" fixed="top">
         <Menu.Item header className="logo">
-          <Image src={logo} size="tiny" />
+          <Link to="/">
+            <Image src={logo} size="tiny" />
+          </Link>
         </Menu.Item>
         <Menu.Menu className="nav-container">
           <Menu.Item className="search-input">
-            <Form>
+            <Form onSubmit={this.onSubmit}>
               <Form.Field>
-                <Input placeholder="Search" size="small" action="Go"/>
+                <Input
+                  placeholder="Search"
+                  size="small"
+                  action="Go"
+                  value={this.state.query}
+                  onChange={this.onInputChange}
+                />
               </Form.Field>
             </Form>
           </Menu.Item>
@@ -41,4 +68,4 @@ export class HeaderNav extends Component {
   }
 }
 
-export default HeaderNav;
+export default withRouter(HeaderNav);

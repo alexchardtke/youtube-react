@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Subscription } from './Subscription';
 import { Divider } from 'semantic-ui-react';
-import { SideBarHeader } from '../SideBarHeader';
+import Subscription from './Subscription';
+import SideBarHeader from '../SideBarHeader';
 
-export class Subscriptions extends Component {
+export default class Subscriptions extends Component {
   render () {
     return (
       <React.Fragment>

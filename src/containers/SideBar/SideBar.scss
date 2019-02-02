@@ -10,6 +10,11 @@ $sidebar-hover-color: #ebebeb;
   .sidebar-item:hover {
     background: $sidebar-hover-color;
   }
+
+  .subscription:hover {
+    background: #ebebeb;
+    cursor: pointer;
+  }
 }
 
 .side-nav.ui.vertical.menu {
